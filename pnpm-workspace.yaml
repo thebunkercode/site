@@ -1,0 +1,19 @@
+packages:
+  - "."
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - workerd
+
+allowBuilds:
+  esbuild: true
+  sharp: true
+  workerd: true
+
+minimumReleaseAgeExclude:
+  - '@cloudflare/workers-types@4.20260627.1'
+  - eslint@10.6.0
+  - prettier@3.9.0
+
+allowedDeprecatedVersions: {}

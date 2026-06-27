@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Topbar from '../components/Topbar.astro';
+---
+
+<BaseLayout>
+  <Topbar />
+  <main class="stage">
+    <section aria-labelledby="about-h">
+      <div class="split">
+        <div>
+          <div class="eyebrow">// 01 · quiénes somos</div>
+          <h2 class="screen-title" id="about-h">
+            <span class="lite">sobre</span>
+            <span class="bold">nosotros</span>
+          </h2>
+          <div class="rule"></div>
+          <p class="screen-text">
+            <strong>the bunker code</strong> es un espacio donde construimos software en vivo. nada de
+            hello world: proyectos reales, en tiempo real, con todo lo que se rompe en el camino.
+          </p>
+        </div>
+
+        <div class="panel">
+          <div class="pillars">
+            <div class="pillar">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="2"></circle>
+                <path
+                  d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"
+                ></path>
+              </svg>
+              <h3>en vivo</h3>
+              <p>
+                sesiones de código en directo por twitch. ves el proceso completo: decisiones,
+                errores y refactors.
+              </p>
+            </div>
+
+            <div class="pillar">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                <path d="m7 9 3 3-3 3"></path><path d="M13 15h4"></path>
+              </svg>
+              <h3>proyectos reales</h3>
+              <p>
+                no enseñamos a programar, enseñamos a construir. apps que se despliegan, no
+                ejercicios.
+              </p>
+            </div>
+
+            <div class="pillar">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="6" y1="3" x2="6" y2="15"></line>
+                <circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle>
+                <path d="M18 9a9 9 0 0 1-9 9"></path>
+              </svg>
+              <h3>open source</h3>
+              <p>todo el código vive en github bajo licencia mit. úsalo, rómpelo, mejóralo.</p>
+            </div>
+
+            <div class="pillar">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"
+                ></path>
+              </svg>
+              <h3>comunidad</h3>
+              <p>
+                una tripulación que revisa prs, comparte recursos y se acompaña en el camino dev.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Topbar from '../components/Topbar.astro';
+import Countdown from '../components/Countdown.svelte';
+import NotifyForm from '../components/NotifyForm.svelte';
+import { TARGET_DATE, VERSION } from '@/lib/constants';
+---
+
+<BaseLayout>
+  <Topbar />
+  <main class="stage">
+    <section class="hero">
+      <span class="badge"><span class="pulse"></span>compilando · {VERSION}</span>
+
+      <h1 class="title">
+        <span class="l1">somos the bunker code</span>
+        <span class="l2">y estamos</span>
+        <span class="l3">por desplegar<span class="cur" aria-hidden="true"></span></span>
+      </h1>
+
+      <p class="cmd">
+        <span class="p">root@bunker</span>:~$ <span class="arg">./launch.sh --in</span>
+      </p>
+
+      <Countdown targetDate={TARGET_DATE} client:load />
+
+      <NotifyForm client:load />
+    </section>
+  </main>
+</BaseLayout>

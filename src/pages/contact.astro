@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Topbar from '../components/Topbar.astro';
+import ContactForm from '../components/ContactForm.svelte';
+import { EMAILS, SOCIAL_URLS } from '@/lib/constants';
+---
+
+<BaseLayout>
+  <Topbar />
+  <main class="stage">
+    <section aria-labelledby="contact-h">
+      <div class="split">
+        <div>
+          <div class="eyebrow">// 02 · hablemos</div>
+          <h2 class="screen-title" id="contact-h">
+            <span class="lite">ponte en</span>
+            <span class="bold">contacto</span>
+          </h2>
+          <div class="rule"></div>
+          <p class="screen-text">
+            ¿tienes una idea, una propuesta o quieres colaborar con el búnker? respondemos a todo lo
+            que llega — propuestas, dudas, o solo para saludar.
+          </p>
+
+          <div class="contact-list">
+            <div class="contact-row">
+              <div class="k">email</div>
+              <div class="val"><a href="mailto:{EMAILS.CONTACT}">{EMAILS.CONTACT}</a></div>
+            </div>
+            <div class="contact-row">
+              <div class="k">twitch</div>
+              <div class="val">
+                <a href={SOCIAL_URLS.twitch} target="_blank" rel="noopener"
+                  >{SOCIAL_URLS.twitch.replace('https://', '')}</a
+                >
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="k">github</div>
+              <div class="val">
+                <a href={SOCIAL_URLS.github} target="_blank" rel="noopener"
+                  >{SOCIAL_URLS.github.replace('https://', '')}</a
+                >
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="k">base</div>
+              <div class="val">lima, perú</div>
+            </div>
+          </div>
+
+          <div class="social">
+            <a href={SOCIAL_URLS.twitch} target="_blank" rel="noopener">twitch</a>
+            <a href={SOCIAL_URLS.github} target="_blank" rel="noopener">github</a>
+            <a href={SOCIAL_URLS.x} target="_blank" rel="noopener">x</a>
+            <a href={SOCIAL_URLS.linkedin} target="_blank" rel="noopener">linkedin</a>
+          </div>
+        </div>
+
+        <ContactForm client:load />
+      </div>
+    </section>
+  </main>
+</BaseLayout>

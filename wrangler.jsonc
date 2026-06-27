@@ -1,0 +1,25 @@
+{
+	"main": "@astrojs/cloudflare/entrypoints/server",
+	"name": "the-bunker-code-landing",
+	"compatibility_date": "2025-06-26",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "bunker-landing-db",
+			"database_id": "f5a071d5-256b-4e69-b584-6ed595044310"
+		}
+	],
+	"vars": {
+		"CONTACT_TO_EMAIL": "thebunkerofthecode@gmail.com"
+	}
+}

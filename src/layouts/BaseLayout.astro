@@ -1,0 +1,54 @@
+---
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import '../styles/google-fonts.css';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>the bunker code — próximamente</title>
+    <meta
+      name="description"
+      content="the bunker code — construimos software en vivo en twitch. proyectos reales, open source, comunidad."
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <div class="skyline" aria-hidden="true">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax meet" fill="currentColor">
+        <rect x="20" y="170" width="46" height="150"></rect>
+        <rect x="78" y="120" width="60" height="200"></rect>
+        <rect x="150" y="200" width="40" height="120"></rect>
+        <rect x="200" y="90" width="54" height="230"></rect>
+        <rect x="266" y="150" width="44" height="170"></rect>
+        <rect x="322" y="210" width="38" height="110"></rect>
+        <rect x="372" y="60" width="48" height="260"></rect>
+        <rect x="432" y="140" width="58" height="180"></rect>
+        <rect x="502" y="190" width="42" height="130"></rect>
+        <rect x="556" y="100" width="50" height="220"></rect>
+        <rect x="618" y="160" width="40" height="160"></rect>
+        <rect x="670" y="40" width="56" height="280"></rect>
+        <rect x="738" y="180" width="44" height="140"></rect>
+        <rect x="794" y="120" width="60" height="200"></rect>
+        <rect x="866" y="210" width="38" height="110"></rect>
+        <rect x="916" y="80" width="52" height="240"></rect>
+        <rect x="980" y="160" width="46" height="160"></rect>
+        <rect x="1038" y="200" width="40" height="120"></rect>
+        <rect x="1090" y="110" width="58" height="210"></rect>
+        <rect x="1160" y="170" width="42" height="150"></rect>
+        <rect x="1214" y="70" width="50" height="250"></rect>
+        <rect x="1276" y="190" width="44" height="130"></rect>
+        <rect x="1332" y="140" width="56" height="180"></rect>
+        <rect x="1400" y="200" width="40" height="120"></rect>
+      </svg>
+    </div>
+
+    <div class="page">
+      <slot />
+      <Footer />
+    </div>
+  </body>
+</html>

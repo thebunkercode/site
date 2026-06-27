@@ -1,0 +1,23 @@
+---
+const path = Astro.url.pathname;
+
+function isActive(href: string): string {
+  const normalized = path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
+  return normalized === href ? 'active' : '';
+}
+---
+
+<header class="topbar">
+  <a class="logo" href="/" aria-label="the bunker code — inicio">
+    <span class="lm">
+      <span class="lm-the">the.</span>
+      <span class="lm-bunker">bunker</span>
+      <span class="lm-code">code</span>
+    </span>
+  </a>
+  <nav class="nav" aria-label="navegación">
+    <a href="/" class={isActive('/')}>inicio</a>
+    <a href="/about" class={isActive('/about')}>sobre</a>
+    <a href="/contact" class={isActive('/contact')}>contacto</a>
+  </nav>
+</header>
