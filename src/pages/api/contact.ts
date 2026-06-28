@@ -51,7 +51,12 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const RESEND_API_KEY = env.RESEND_API_KEY ?? import.meta.env.RESEND_API_KEY;
-  const CONTACT_TO_EMAIL = env.CONTACT_TO_EMAIL ?? import.meta.env.CONTACT_TO_EMAIL;
+  const CONTACT_TO_EMAIL =
+    env.CONTACT_TO_EMAIL ?? import.meta.env.CONTACT_TO_EMAIL ?? EMAILS.CONTACT_TO;
+  const RESEND_FROM =
+    (env as unknown as Record<string, string | undefined>).RESEND_FROM ??
+    import.meta.env.RESEND_FROM ??
+    EMAILS.RESEND_FROM;
 
   if (!RESEND_API_KEY) {
     console.error('Missing RESEND_API_KEY');
@@ -74,7 +79,7 @@ export const POST: APIRoute = async ({ request }) => {
     ].join('');
 
     const { error } = await resend.emails.send({
-      from: EMAILS.RESEND_FROM,
+      from: RESEND_FROM,
       to: [CONTACT_TO_EMAIL],
       subject: `[bunker] mensaje de ${name}`,
       html,

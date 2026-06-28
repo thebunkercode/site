@@ -6,7 +6,8 @@ export const SOCIAL_URLS = {
 } as const;
 
 export const EMAILS = {
-  CONTACT: 'hola@thebunkercode.org',
+  CONTACT_WEB: 'hola@thebunkercode.org',
+  CONTACT_TO: 'thebunkerofthecode@gmail.com',
   RESEND_FROM: 'Bunker Contact <onboarding@resend.dev>',
 } as const;
 

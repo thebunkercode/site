@@ -16,8 +16,11 @@ describe('SOCIAL_URLS', () => {
 });
 
 describe('EMAILS', () => {
-  it('contact email is correct', () => {
-    expect(EMAILS.CONTACT).toBe('hola@thebunkercode.org');
+  it('contact web email is correct', () => {
+    expect(EMAILS.CONTACT_WEB).toBe('hola@thebunkercode.org');
+  });
+  it('contact to email is correct', () => {
+    expect(EMAILS.CONTACT_TO).toBe('thebunkerofthecode@gmail.com');
   });
   it('resend sender is defined', () => {
     expect(EMAILS.RESEND_FROM).toBeTruthy();
