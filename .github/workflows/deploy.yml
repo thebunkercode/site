@@ -48,10 +48,15 @@ jobs:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           command: versions upload
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Print preview URL
+      - name: Add preview URL to job summary
         run: |
-          echo "🚀 Preview URL: ${{ steps.preview.outputs.deployment-url }}"
-          echo "Branch: ${{ github.ref_name }}"
+          {
+            echo "## 🚀 Preview URL"
+            echo ""
+            echo "\`${{ steps.preview.outputs.deployment-url }}\`"
+            echo ""
+            echo "**Branch:** \`${{ github.ref_name }}\`"
+          } >> $GITHUB_STEP_SUMMARY
 
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
