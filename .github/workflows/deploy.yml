@@ -10,9 +10,6 @@ on:
 jobs:
   quality:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: code
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6.0.9
@@ -35,9 +32,6 @@ jobs:
       deployments: write
       pull-requests: write
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: code
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6.0.9
@@ -70,9 +64,6 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: quality
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: code
     steps:
       - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6.0.9
