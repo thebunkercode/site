@@ -12,12 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v6.0.9
-        with:
-          version: 11
       - uses: actions/setup-node@v6.4.0
         with:
           node-version: 22
+      - run: npm install -g pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm check
@@ -34,12 +32,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v6.0.9
-        with:
-          version: 11
       - uses: actions/setup-node@v6.4.0
         with:
           node-version: 22
+      - run: npm install -g pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - name: Deploy preview
@@ -47,7 +43,6 @@ jobs:
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          packageManager: npm
           command: pages deploy dist --project-name=the-bunker-code-landing --branch=${{ github.head_ref }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Comment preview URL
@@ -67,16 +62,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: pnpm/action-setup@v6.0.9
-        with:
-          version: 11
       - uses: actions/setup-node@v6.4.0
         with:
           node-version: 22
+      - run: npm install -g pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          packageManager: npm
           command: deploy
