@@ -1,0 +1,72 @@
+stages:
+  - validate
+  - quality
+  - preview
+  - deploy
+
+default:
+  image: node:24
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "hotfix"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+validate-branch-flow:
+  stage: validate
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  script:
+    - |
+      case "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME:$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME" in
+        develop:feature/*|hotfix:fix/*|main:develop|main:hotfix)
+          echo "Allowed branch flow: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME -> $CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+          ;;
+        *)
+          echo "Invalid branch flow: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME -> $CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+          echo "Allowed flows: feature/* -> develop, fix/* -> hotfix, develop -> main, hotfix -> main"
+          exit 1
+          ;;
+      esac
+
+quality:
+  stage: quality
+  before_script:
+    - npm install -g pnpm
+    - pnpm install --frozen-lockfile
+  script:
+    - pnpm lint
+    - pnpm check
+    - pnpm test:coverage
+    - pnpm build
+
+preview:
+  stage: preview
+  needs: [quality]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "hotfix"
+  before_script:
+    - npm install -g pnpm
+    - pnpm install --frozen-lockfile
+  script:
+    - pnpm build
+    - npx wrangler versions upload
+  environment:
+    name: preview/$CI_COMMIT_REF_SLUG
+
+deploy:
+  stage: deploy
+  needs: [quality]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+  before_script:
+    - npm install -g pnpm
+    - pnpm install --frozen-lockfile
+  script:
+    - pnpm build
+    - CLOUDFLARE_API_TOKEN=$CF_API_TOKEN npx wrangler deploy
+  environment:
+    name: production
