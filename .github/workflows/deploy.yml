@@ -2,10 +2,10 @@ name: CI/CD
 
 on:
   pull_request:
-    branches: [develop, main]
+    branches: [develop, hotfix, main]
     types: [opened, synchronize, reopened]
   push:
-    branches: [main]
+    branches: [develop, hotfix, main]
 
 jobs:
   quality:
@@ -23,12 +23,11 @@ jobs:
       - run: pnpm build
 
   preview:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/hotfix')
     needs: quality
     permissions:
       contents: read
       deployments: write
-      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -49,16 +48,10 @@ jobs:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           command: versions upload
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Comment preview URL
-        uses: actions/github-script@v9
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `## 🚀 Preview\n\n**URL:** ${{ steps.preview.outputs.deployment-url }}\n\n**Branch:** \`${{ github.head_ref }}\``
-            })
+      - name: Print preview URL
+        run: |
+          echo "🚀 Preview URL: ${{ steps.preview.outputs.deployment-url }}"
+          echo "Branch: ${{ github.ref_name }}"
 
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
