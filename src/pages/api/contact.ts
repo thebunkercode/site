@@ -50,8 +50,8 @@ export const POST: APIRoute = async ({ request }) => {
     return jsonError('email inválido', 400);
   }
 
-  const RESEND_API_KEY = env.RESEND_API_KEY;
-  const CONTACT_TO_EMAIL = env.CONTACT_TO_EMAIL || EMAILS.CONTACT;
+  const RESEND_API_KEY = env.RESEND_API_KEY ?? import.meta.env.RESEND_API_KEY;
+  const CONTACT_TO_EMAIL = env.CONTACT_TO_EMAIL ?? import.meta.env.CONTACT_TO_EMAIL;
 
   if (!RESEND_API_KEY) {
     console.error('Missing RESEND_API_KEY');

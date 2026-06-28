@@ -20,7 +20,8 @@
     "deploy:staging": "astro build && wrangler deploy --env staging",
     "deploy:prod": "astro build && wrangler deploy --env production",
     "prepare": "husky",
-    "db:migrate": "wrangler d1 migrations apply bunker-landing-db --local"
+    "db:migrate": "wrangler d1 migrations apply bunker-landing-db --local",
+    "db:studio": "wrangler d1 execute bunker-landing-db --local --command="
   },
   "lint-staged": {
     "*.{ts,svelte,astro}": [
