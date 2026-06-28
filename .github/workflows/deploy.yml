@@ -8,6 +8,26 @@ on:
     branches: [develop, hotfix, main]
 
 jobs:
+  validate-branch-flow:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate pull request branch flow
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          case "$BASE_REF:$HEAD_REF" in
+            develop:feature/*|hotfix:fix/*|main:develop|main:hotfix)
+              echo "Allowed branch flow: $HEAD_REF -> $BASE_REF"
+              ;;
+            *)
+              echo "Invalid branch flow: $HEAD_REF -> $BASE_REF"
+              echo "Allowed flows are feature/* -> develop, fix/* -> hotfix, develop -> main, and hotfix -> main."
+              exit 1
+              ;;
+          esac
+
   quality:
     runs-on: ubuntu-latest
     steps:
