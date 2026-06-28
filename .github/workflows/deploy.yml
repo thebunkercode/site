@@ -45,6 +45,17 @@ jobs:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           command: versions upload
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          secrets: |
+            RESEND_API_KEY
+          vars: |
+            ALLOWED_ORIGIN
+            CONTACT_TO_EMAIL
+            RESEND_FROM
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          ALLOWED_ORIGIN: ${{ vars.ALLOWED_ORIGIN }}
+          CONTACT_TO_EMAIL: ${{ vars.CONTACT_TO_EMAIL }}
+          RESEND_FROM: ${{ vars.RESEND_FROM }}
       - name: Comment preview URL
         uses: actions/github-script@v9
         with:
@@ -72,3 +83,14 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           command: deploy
+          secrets: |
+            RESEND_API_KEY
+          vars: |
+            ALLOWED_ORIGIN
+            CONTACT_TO_EMAIL
+            RESEND_FROM
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          ALLOWED_ORIGIN: ${{ vars.ALLOWED_ORIGIN }}
+          CONTACT_TO_EMAIL: ${{ vars.CONTACT_TO_EMAIL }}
+          RESEND_FROM: ${{ vars.RESEND_FROM }}
