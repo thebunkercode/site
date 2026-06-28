@@ -2,7 +2,6 @@
   "name": "the-bunker-code-landing",
   "type": "module",
   "version": "0.1.0",
-  "packageManager": "pnpm@11.9.0",
   "scripts": {
     "dev": "astro dev",
     "dev:edge": "wrangler dev",
