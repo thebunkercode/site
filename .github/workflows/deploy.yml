@@ -43,7 +43,7 @@ jobs:
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          command: deploy --temporary
+          command: versions upload
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Comment preview URL
         uses: actions/github-script@v9
