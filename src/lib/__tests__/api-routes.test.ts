@@ -62,6 +62,7 @@ function createAstroContext(request: Request): any {
 
 describe('POST /api/contact', () => {
   beforeEach(() => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
     vi.clearAllMocks();
     mockRateLimiter.check.mockReturnValue({
       allowed: true,
@@ -174,6 +175,7 @@ describe('POST /api/contact', () => {
 
 describe('POST /api/notify', () => {
   beforeEach(() => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
     vi.clearAllMocks();
     mockRateLimiter.check.mockReturnValue({
       allowed: true,
