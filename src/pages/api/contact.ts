@@ -11,10 +11,12 @@ export const prerender = false;
 
 const rateLimiter = createRateLimiter({ maxRequests: 10, windowMs: 60_000 });
 
-const ALLOWED_ORIGIN = 'https://thebunkercode.com';
+const allowedOrigin =
+  (env as unknown as Record<string, string | undefined>).ALLOWED_ORIGIN ??
+  import.meta.env.ALLOWED_ORIGIN;
 
 export const POST: APIRoute = async ({ request }) => {
-  if (!validateOrigin(request, ALLOWED_ORIGIN)) {
+  if (!validateOrigin(request, allowedOrigin)) {
     return jsonError('origen no permitido', 403);
   }
 
